@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
-import time
+import pymysql
 
 # get raw data from the specified url
 def get_soup(url):
@@ -34,7 +33,8 @@ def get_company_name(soup):
     return name_list
 
 def generate_list():
-    url = "https://www.indeed.com/jobs?q=data%20scientist&l=Richmond%2C%20VA&vjk=be01cc7841e7b63c"
+    #url = "https://www.indeed.com/jobs?q=data%20scientist&l=Richmond%2C%20VA&vjk=be01cc7841e7b63c"
+    url = "https://www.indeed.com/jobs?q=data%20scientist"
     output_list = []
     
     soup = get_soup(url)
@@ -64,14 +64,35 @@ def generate_list():
     return output_list
 
 if __name__ == "__main__":
-    generate_list()
-            
 
-#for iy in output_list:
-    #print(iy[0])
+    ENDPOINT="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com"
+    PORT="3306"
+    USER="mgsher"
+    REGION="us-east-1f"
+    DBNAME="cypher"
+    PASSWORD = "cypherteam"
 
-#print(output_list)
+    data = generate_list()
 
+    # connect to database
+    conn = pymysql.connect(host=ENDPOINT, user=USER, password=PASSWORD,db=DBNAME)
+    cur = conn.cursor()
+
+    # insert the scraped data into the database
+    insert_query = ("INSERT INTO tJobRaw (jobid, job_url, job_descript) VALUES (%s, %s, %s)")
+
+    try:
+        cur.executemany(insert_query, data)
+    except:
+        print("Unable to populate the raw job data table.")
+
+    conn.commit()
+    cur.execute("select * from tJobRaw;")
+    output = cur.fetchall()
+    print(output)
+
+    # close the connection
+    conn.close()
 
 
 
