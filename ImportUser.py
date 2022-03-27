@@ -34,7 +34,7 @@ def userfeed(Keys,Sponser = False):
 userfeed(Key,sponser)
 cur.execute ("SELECT custid FROM tCust;")
 x = cur.fetchall()
-print(x[len(x)-1])
-
+id = x[len(x)-1]
+print (id[0])
 conn.commit()
 conn.close()
