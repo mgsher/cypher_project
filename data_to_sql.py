@@ -22,7 +22,7 @@ cur.execute("""CREATE TABLE tJobRaw(
 
 cur.execute("""DROP TABLE IF EXISTS tCust""")
 cur.execute("""CREATE TABLE tCust(
-                    custid MEDIUMINT NOT NULL AUTO_INCREMENT,
+                    custid INT primary key NOT NULL AUTO_INCREMENT,
                     degree TEXT NOT NULL,
                     tools TEXT NOT NULL,
                     skillset TEXT NOT NULL,
