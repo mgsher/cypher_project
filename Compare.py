@@ -1,15 +1,5 @@
 import pymysql
 
-ENDPOINT="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com"
-PORT="3306"
-USER="mgsher"
-REGION="us-east-1f"
-DBNAME="cypher"
-PASSWORD = "cypherteam"
-
-conn = pymysql.connect(host="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com", user="mgsher", password="cypherteam",db="cypher")
-
-
 def parse(x):
   if x == None:
     return []
@@ -73,31 +63,42 @@ def Compare(JD,candidate):
     else:
       return str(round(score/scoreall*100))+'%', warnings, JD[0]
 
-cur = conn.cursor()
-request = input("Enter your ID: ")
-request = int(request)
-select = ("SELECT * FROM tCust WHERE custid = %s;")
-cur.execute(select, request)
-    
-x = cur.fetchall()
-user = x[0]
-cur.execute("SELECT * FROM tJobDesc") 
-y = cur.fetchall()
+if __name__ == "__main__":
+    ENDPOINT="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com"
+    PORT="3306"
+    USER="mgsher"
+    REGION="us-east-1f"
+    DBNAME="cypher"
+    PASSWORD = "cypherteam"
 
-for i in y:
-    if Compare (i,user) == 0:
-        pass
-    else:
-        MatchScore, Warning, JobID = Compare (i,user)
-        id = int(JobID)
-        select = ("SELECT job_url FROM tJobRaw WHERE jobid = %s;")
-        cur.execute(select, id)
-        url = cur.fetchone()
-        MatchScore = ''.join(MatchScore)
-        Warning = ' '.join(Warning)
-        print('You are '+MatchScore+' match to this job, ', Warning, '\n','Apply Job'+str(url))
+    conn = pymysql.connect(host="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com", user="mgsher", password="cypherteam",db="cypher")
 
-       
-conn.close()
+
+    cur = conn.cursor()
+    request = '???'
+    request = int(request)
+    select = ("SELECT * FROM tCust WHERE custid = %s;")
+    cur.execute(select, request)
+        
+    x = cur.fetchall()
+    user = x[0]
+    cur.execute("SELECT * FROM tJobDesc") 
+    y = cur.fetchall()
+
+    for i in y:
+        if Compare (i,user) == 0:
+            pass
+        else:
+            MatchScore, Warning, JobID = Compare (i,user)
+            id = int(JobID)
+            select = ("SELECT job_url FROM tJobRaw WHERE jobid = %s;")
+            cur.execute(select, id)
+            url = cur.fetchone()
+            MatchScore = ''.join(MatchScore)
+            Warning = ' '.join(Warning)
+            print('You are '+MatchScore+' match to this job, ', Warning, '\n','Apply Job'+str(url))
+
+          
+    conn.close()
 
 
