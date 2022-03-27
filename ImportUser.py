@@ -16,7 +16,7 @@ def userfeed(Keys,Sponser = False):
     )
     cust_params = (De,Te,Sk,Sp)
     cur.execute(insert_stmt, cust_params)
-    
+
 if __name__ == "__main__":
     ENDPOINT="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com"
     PORT="3306"
@@ -39,3 +39,4 @@ if __name__ == "__main__":
 
     conn.commit()
     conn.close()
+
