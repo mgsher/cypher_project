@@ -4,7 +4,6 @@ import docx2txt
 from KeywordLocate import *
 
 def userfeed(Keys,Sponser = False):
-    
     De =str(Keys[0])
     Te =str(Keys[1])
     Sk =str(Keys[2])
