@@ -14,7 +14,7 @@ conn = pymysql.connect(host="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.co
 
 cur = conn.cursor()
 my_text = docx2txt.process("???")
-sponser = ???
+sponser = ?
 Key = Keyword(my_text)
 
 def userfeed(Keys,Sponser = False):
