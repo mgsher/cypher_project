@@ -38,8 +38,6 @@ if __name__ == "__main__":
         )
         cust_params = (jobid, De,Te,Sk,Sp)
         cur.execute(insert_stmt, cust_params)
-        
-    
     conn.commit()
 
     conn.close()
