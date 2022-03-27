@@ -97,7 +97,6 @@ if __name__ == "__main__":
             MatchScore = ''.join(MatchScore)
             Warning = ' '.join(Warning)
             print('You are '+MatchScore+' match to this job, ', Warning, '\n','Apply Job'+str(url))
-
           
     conn.close()
 
