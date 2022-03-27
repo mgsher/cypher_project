@@ -15,6 +15,7 @@ conn = pymysql.connect(host="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.co
 cur = conn.cursor()
 my_text = docx2txt.process("???")
 sponser = ?
+
 Key = Keyword(my_text)
 
 def userfeed(Keys,Sponser = False):
@@ -30,6 +31,10 @@ def userfeed(Keys,Sponser = False):
     )
     cust_params = (De,Te,Sk,Sp)
     cur.execute(insert_stmt, cust_params)
-userfeed(Key,True)
+userfeed(Key,sponser)
+cur.execute ("SELECT custid FROM tCust;")
+x = cur.fetchall()
+print(x[len(x)-1])
+
 conn.commit()
 conn.close()
