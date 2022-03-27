@@ -13,8 +13,8 @@ PASSWORD = "cypherteam"
 conn = pymysql.connect(host="career-info.coid7kfjmyst.us-east-1.rds.amazonaws.com", user="mgsher", password="cypherteam",db="cypher")
 
 cur = conn.cursor()
-my_text = docx2txt.process("/Users/helennayin/Documents/cypher/Yueyue Yin_resume.docx")
-#iter over every single job
+my_text = docx2txt.process("???")
+sponser = ?
 Key = Keyword(my_text)
 
 def userfeed(Keys,Sponser = False):
