@@ -71,21 +71,21 @@ def SkillSet(text):
 
 
 def Keyword(text):
-  delim = ","
-  Tool = Tools(text)
-  T=''
-  for i in Tool:
-    T = T+str(i)+delim
-  Skills = SkillSet(text)
-  Sk = '' 
-  for i in Skills:
-    Sk = Sk + str(i) + delim
-  
-  
-  
-  Degrees = Degree(text)
-  D = ''
-  for i in Degrees:
-    D = D + str(i) + delim
-  S = Sponsor(text)
-  return D,T,Sk,S
+    delim = ","
+    Tool = Tools(text)
+    T=''
+    for i in Tool:
+      T = T+str(i)+delim
+    Skills = SkillSet(text)
+    Sk = '' 
+    for i in Skills:
+      Sk = Sk + str(i) + delim
+    
+    
+    
+    Degrees = Degree(text)
+    D = ''
+    for i in Degrees:
+      D = D + str(i) + delim
+    S = Sponsor(text)
+    return D,T,Sk,S
